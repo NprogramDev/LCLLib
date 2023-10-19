@@ -144,24 +144,27 @@ size_t BINary::size()
 }
 BINarySetter BINary::operator[](size_t idx)
 {
-    BINarySetter rt(*this, idx);
+    BINarySetter rt(this, idx);
     return rt;
 }
-BINarySetter::BINarySetter(BINary ref, size_t idx)
+BINarySetter::BINarySetter(BINary* ref, size_t idx)
 {
     this->ref = ref;
     this->idx = idx;
 }
+BINarySetter::~BINarySetter(){
+    //delete this->ref;
+}
 BINarySetter::operator bool()
 {
-    return ref.get(idx);
+    return ref->get(idx);
 }
 BINarySetter::operator BINary()
 {
-    return ref;
+    return *ref;
 }
-BINarySetter &BINarySetter::operator=(bool &bit)
+BINarySetter &BINarySetter::operator=(bool bit)
 {
-    ref.set(this->idx, bit);
+    ref->set(this->idx, bit);
     return *this;
 }

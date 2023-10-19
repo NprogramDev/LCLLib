@@ -31,11 +31,12 @@ namespace LCLLib{
     };
     class BINarySetter{
         private:
-        BINary ref;
+        BINary* ref;
         size_t idx;
         public:
-        BINarySetter(BINary ref,size_t idx);
-        BINarySetter& operator=(bool& bit);
+        BINarySetter(BINary* ref,size_t idx);
+        ~BINarySetter();
+        BINarySetter& operator=(bool bit);
         operator bool();
         operator BINary();
     };
